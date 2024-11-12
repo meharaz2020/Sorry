@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sorry ইরাবতী</title>
+  <style>
+    /* Resetting basic margins */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body styling */
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Arial', sans-serif;
+      background: radial-gradient(circle, #ff9190, #ffc3a0);
+      text-align: center;
+      padding: 20px; /* Adding padding for mobile responsiveness */
+    }
+
+    /* Main container styling */
+    .container {
+      color: #ffffff;
+      max-width: 500px;  /* Limiting the width on large screens */
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Button styling */
+    .reveal-button {
+      padding: 12px 25px;
+      font-size: 1.1em;
+      color: #ff9190;
+      background-color: #fff5e1;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease-in-out;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .reveal-button:hover {
+      transform: scale(1.05);
+    }
+
+    /* Hidden message styling */
+    .message {
+      font-size: 1.5em;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      display: none; /* Initially hidden */
+      animation: fadeIn 1s ease-in-out forwards, shake 0.5s ease-out 1s forwards;
+      cursor: pointer;
+    }
+
+    /* Main apology message styling */
+    h1 {
+      font-size: 2.5em;
+      font-weight: bold;
+      color: #fff5e1;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      opacity: 0;
+      display: none;
+      animation: fadeIn 1.5s ease-in-out forwards;
+    }
+
+    /* Heart icon styling */
+    .heart {
+      color: #ff6b6b;
+      font-size: 1.5em;
+      animation: beat 1.5s infinite;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.2em;
+      }
+      .message {
+        font-size: 1.2em;
+      }
+      .reveal-button {
+        padding: 10px 20px;
+        font-size: 1em;
+      }
+    }
+
+    /* Keyframes for animations */
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      50% { transform: translateX(10px); }
+      75% { transform: translateX(-10px); }
+      100% { transform: translateX(0); }
+    }
+
+    @keyframes beat {
+      0%, 20%, 50%, 80%, 100% {
+        transform: scale(1);
+      }
+      40% {
+        transform: scale(1.2);
+      }
+      60% {
+        transform: scale(1.1);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Reveal Button -->
+  <button class="reveal-button" onclick="toggleMessage()">Click to Apologize</button>
+
+  <!-- Message Content -->
+  <h1>Sorry ইরাবতী</h1>
+  <p class="message" onclick="hideMessage()">I’m truly sorry. I didn’t mean to hurt you. <span class="heart">❤️</span></p>
+</div>
+
+<script>
+  let messageVisible = false;  // Flag to track message visibility
+
+  // Function to toggle the message visibility
+  function toggleMessage() {
+    const message = document.querySelector('.message');
+    const heading = document.querySelector('h1');
+    const button = document.querySelector('.reveal-button');
+
+    // Toggle the visibility of the message
+    if (messageVisible) {
+      message.style.opacity = 0;
+      message.style.display = 'none';
+      heading.style.opacity = 0;
+      heading.style.display = 'none';
+      button.style.display = 'block';  // Show the button again when message is hidden
+    } else {
+      message.style.display = 'block';
+      heading.style.display = 'block';
+      button.style.display = 'none';  // Hide the button when message is visible
+
+      // Trigger fade-in and shake animation for the message
+      setTimeout(() => {
+        message.style.opacity = 1;
+        heading.style.opacity = 1;
+      }, 100);
+
+      // Add the shake effect to show emotion
+      message.style.animation = "shake 0.5s ease-out 1s forwards";
+    }
+
+    // Toggle the flag
+    messageVisible = !messageVisible;
+  }
+
+  // Function to hide the message when clicked on it
+  function hideMessage() {
+    const message = document.querySelector('.message');
+    const heading = document.querySelector('h1');
+    const button = document.querySelector('.reveal-button');
+
+    // Hide the message and show the button again
+    message.style.opacity = 0;
+    message.style.display = 'none';
+    heading.style.opacity = 0;
+    heading.style.display = 'none';
+    button.style.display = 'block';
+    
+    // Reset the visibility flag
+    messageVisible = false;
+  }
+</script>
+
+</body>
+</html>
